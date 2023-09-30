@@ -23,18 +23,40 @@ class DataStreamer {
    */
   static getData(callback: (data: ServerRespond[]) => void): void {
     const request = new XMLHttpRequest();
-    request.open('GET', DataStreamer.API_URL, false);
+    request.open('GET', DataStreamer.API_URL,false);
 
     request.onload = () => {
       if (request.status === 200) {
         callback(JSON.parse(request.responseText));
       } else {
-        alert ('Request failed');
+        alert('Request failed');
       }
     }
 
     request.send();
   }
 }
+
+// class DataStreamer {
+//   static API_URL: string = 'http://localhost:8080/query?id=1';
+
+//   static async getData(callback: (data: ServerRespond[]) => void): Promise<void> {
+//     try {
+//       const response = await fetch(DataStreamer.API_URL);
+      
+//       if (response.ok) {
+//         const data = await response.json();
+//         callback(data);
+//       } else {
+//         alert('Request failed');
+//       }
+//     } catch (error) {
+//       console.error('An error occurred:', error);
+//     }
+//   }
+// }
+
+
+
 
 export default DataStreamer;
